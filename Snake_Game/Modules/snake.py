@@ -16,16 +16,29 @@ class Snake:
         self.head = self.portion[0]
 
     def make_snake(self):
-
         for position in STARTING_POSITION:
-            new_snake = Turtle("square")
-            new_snake.shapesize(0.1,1)
-            new_snake.color("white")
-            new_snake.penup()
-            new_snake.goto(position)
-            self.portion.append(new_snake)
+            self.add_portion(position)
+            
+                       
+    
+    def add_portion(self, position):
+        new_snake = Turtle("circle")
+        new_snake.color("green", "blue")
+        new_snake.penup()
+        new_snake.goto(position)
+        self.portion.append(new_snake)
 
-                   
+        trail = Turtle()
+        trail.penup()
+        trail.goto(position)
+        trail.color("gray")
+        trail.shape("circle")
+        trail.stamp()
+
+
+    def extend_snake(self):
+        self.add_portion(self.portion[-1].position())
+
 
     def move(self):
         for por_num in range(len(self.portion)-1, 0, -1):
